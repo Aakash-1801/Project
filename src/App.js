@@ -1,16 +1,17 @@
 import React from 'react';
 import Navbar from './Navbar';
-import './App.css'; // Make sure this CSS is imported
+import './App.css';
 
 function App() {
   return (
     <div>
       <Navbar />
+
       <div className="main-container">
         <div className="left-content">
-          <h1>Find your dream job today</h1>
+          <h1>ndbvf hhbsd mhbj nvh</h1>
           <p>
-            Welcome to JobSearch—your gateway to exciting career opportunities! Whether you're a fresh graduate, an experienced professional, or someone looking for a career shift, we've got thousands of job listings tailored just for you.
+            Focus on your carrier not other's repositories Focus on your carrier not other's repositories Focus on your carrier not other's repositories Focus on your carrier not other's repositories Focus on your carrier not other's repositories 
           </p>
         </div>
         <div className="right-content">
@@ -19,10 +20,61 @@ function App() {
       </div>
 
       <div className='milestone'>
-        <div className='mlstn1'>jobs</div>
-        <div className='mlstn1'>Companies</div>
-        <div className='mlstn1'>employees</div>
-        <div className='mlstn1'>users</div>
+        <div className='mlstn1'>
+          <div id='up'>Welcome</div>
+          <div id='down'>1000</div>
+        </div>
+        <div className='mlstn1'>
+          <div id='up'>To</div>
+          <div id='down'>1000</div>
+        </div>
+        <div className='mlstn1'>
+          <div id='up'>My</div>
+          <div id='down'>1000</div>
+        </div>
+        <div className='mlstn1'>
+          <div id='up'>Private</div>
+          <div id='down'>1000</div>
+        </div>
+      </div>
+
+      <h1 id='cat'>Popular catagories</h1>
+
+      <div className='popular'>
+        <div className='mlstn1'>
+          <div id='up'>Company</div>
+          <div id='down'>1000</div>
+        </div>
+        <div className='mlstn1'>
+          <div id='up'>You</div>
+          <div id='down'>1000</div>
+        </div>
+        <div className='mlstn1'>
+          <div id='up'>Will</div>
+          <div id='down'>1000</div>
+        </div>
+        <div className='mlstn1'>
+          <div id='up'>Find</div>
+          <div id='down'>1000</div>
+        </div>
+      </div>
+      <div className='popular'>
+        <div className='mlstn1'>
+          <div id='up'>No</div>
+          <div id='down'>1000</div>
+        </div>
+        <div className='mlstn1'>
+          <div id='up'>One</div>
+          <div id='down'>1000</div>
+        </div>
+        <div className='mlstn1'>
+          <div id='up'>Else</div>
+          <div id='down'>1000</div>
+        </div>
+        <div className='mlstn1'>
+          <div id='up'>Here</div>
+          <div id='down'>1000</div>
+        </div>
       </div>
     </div>
   );

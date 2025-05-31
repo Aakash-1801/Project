@@ -5,36 +5,6 @@ body, html, #root {
   font-family: Arial, sans-serif;
 }
 
-/* Navbar styling */
-.navbar {
-  height: 60px;
-  background-color: #333;
-  color: white;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navbar-left {
-  display: flex;
-  align-items: center;
-}
-
-.profile-pic {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.navbar-right a {
-  margin-left: 20px;
-  color: white;
-  text-decoration: none;
-}
-
-
 /* Main layout below navbar */
 .main-container {
   display: flex;
@@ -83,12 +53,33 @@ body, html, #root {
  }
  
  .mlstn1 {
-  display: flex;
   margin: 10px;
   width: 250px;
   height: 100px;
-  justify-content: center;
   padding-top: 20px;
   font-size: 30px;
   border: 2px solid black;
+ }
+
+ #up {
+  justify-content: center;
+  display: flex;
+  margin-bottom: 8%;
+ }
+
+ #down {
+  justify-content: center;
+  display: flex;
+ }
+
+ #cat {
+  padding-left: 20px;
+  font-size: 40px;
+ }
+ .popular {
+  display: flex;
+  padding: 20px 60px;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 2px solid black; */
  }
