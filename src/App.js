@@ -15,6 +15,10 @@ function App() {
       <h1 id='cat'>Popular catagories</h1>
 
       <Popular />
+
+      <h1 id='cat'>Top Companies</h1>
+
+      <Milestones />
     </div>
   );
 }

@@ -1,32 +1,35 @@
 .navbar {
-    height: 60px;
-    background-color: #333;
-    color: white;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .profile-pic {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-  }
-  
-  .navbar-right a {
-    margin-left: 20px;
-    color: white;
-    text-decoration: none;
-  }
-  
-  .navbar-right a:hover {
-    text-decoration: underline;
-  }
-  
+  height: 60px;
+  background-color: #333;
+  color: white;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.navbar-right a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-right a:hover {
+  text-decoration: underline;
+}
+
+span {
+  margin: 0px 20px;
+}

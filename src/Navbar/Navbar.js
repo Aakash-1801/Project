@@ -15,9 +15,10 @@ function Navbar() {
         {/* <button onClick={() => navigate('/')}>Home</button>
         <button onClick={() => navigate('/About')}>About</button>
         <button onClick={() => navigate('/Contact')}>Contact</button> */}
-        <button>Home</button>
-        <button>About</button>
-        <button>Contact</button>
+        <span>Home</span>
+        <span>About</span>
+        <span>Support</span>
+        <span>Contact</span>
       </div>
     </nav>
   );
