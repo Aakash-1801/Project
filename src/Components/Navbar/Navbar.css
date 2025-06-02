@@ -25,19 +25,9 @@
   color: white;
   margin: 0 10px;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 .navbar-right a:hover {
   color: #6db2fc;
-}
-
-span {
-  margin: 0px 20px;
-}
-
-button {
-  margin: 0px 20px;
-  background-color: #333;
-  color: white;
 }

@@ -27,13 +27,13 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './Navbar/Navbar';
-import FrontPage from './FrontPage/FrontPage';
-import Milestones from './Milestones/Milestones';
-import Popular from './Milestones/Popular';
-import About from './About';
-import Support from './Support';
-import Contact from './Contact';
+import Navbar from './Components/Navbar/Navbar';
+import FrontPage from './Components/FrontPage/FrontPage';
+import Milestones from './Components/Milestones/Milestones';
+import Popular from './Components/Milestones/Popular';
+import About from './Components/Pages/About';
+import Support from './Components/Pages/Support';
+import Contact from './Components/Pages/Contact';
 
 function App() {
   return (
