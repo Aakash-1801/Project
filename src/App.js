@@ -34,6 +34,7 @@ import Popular from './Components/Milestones/Popular';
 import About from './Components/Pages/About';
 import Support from './Components/Pages/Support';
 import Contact from './Components/Pages/Contact';
+import Register from './Components/Register/Register';
 
 function App() {
   return (
@@ -46,13 +47,15 @@ function App() {
             <Milestones />
             <h1 id="cat">Popular categories</h1>
             <Popular />
+            <Popular />
             <h1 id="cat">Top Companies</h1>
-            <Milestones />
+            <Popular />
           </>
         } />
         <Route path="/About" element={<About />} />
         <Route path="/Support" element={<Support />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );

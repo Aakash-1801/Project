@@ -1,0 +1,51 @@
+.popular {
+    display: flex;
+    padding: 2.78% 5.56%;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 2px solid black; */
+}
+   
+.pop {
+    margin: 10px;
+    width: 18%;
+    height: 9%;
+    padding-top: 20px;
+    font-size: 30px;
+    border: 2px solid black;
+}
+
+/* Centering container */
+.pop #up {
+    justify-content: center;
+    display: flex;
+    height: 54.4px;
+}
+
+/* Styled Button */
+.pop #down {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0px 20% 4%;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    background-color: #75b8ff;
+    border: none;
+    border-radius: 8px;
+    /* cursor: pointer; */
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.pop #down:hover {
+    background-color: #75b2f4;
+}
+
+.pop #down:active {
+    background-color: #59a5f5;
+    transform: scale(0.98);
+}
