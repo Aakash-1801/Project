@@ -32,7 +32,7 @@ import FrontPage from './Components/FrontPage/FrontPage';
 import Milestones from './Components/Milestones/Milestones';
 import Popular from './Components/Milestones/Popular';
 import About from './Components/Pages/About';
-import Support from './Components/Pages/Support';
+import Support from './Components/Pages/Support/Support';
 import Contact from './Components/Pages/Contact';
 import Register from './Components/Register/Register';
 
