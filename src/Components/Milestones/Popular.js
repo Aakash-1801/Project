@@ -3,28 +3,18 @@ import { Link } from "react-router-dom";
 import './Pop.css';
 
 function Popular() {
-    return (
-        <div>
-            <div className='popular'>
-                <div className='pop'>
-                    <div id='up'>Company</div>
-                    <Link to="/register" id='down'>1000</Link>
-                </div>
-                <div className='pop'>
-                    <div id='up'>You</div>
-                    <Link to="/register" id='down'>1000</Link>
-                </div>
-                <div className='pop'>
-                    <div id='up'>Will</div>
-                    <Link to="/register" id='down'>1000</Link>
-                </div>
-                <div className='pop'>
-                    <div id='up'>Find</div>
-                    <Link to="/register" id='down'>1000</Link>
-                </div>
-            </div>
+  const companies = ['Company', 'You', 'Will', 'Find'];
+
+  return (
+    <div className='popular'>
+      {companies.map((company, index) => (
+        <div className='pop' key={index}>
+          <div id='up'>{company}</div>
+          <Link to="/company" id='down'>1000</Link>
         </div>
-    )
+      ))}
+    </div>
+  );
 }
 
-export default Popular
+export default Popular;
