@@ -1,0 +1,121 @@
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Allow top alignment */
+    min-height: 100vh; /* Use min-height instead of height */
+    background-color: #ebe9e9;
+    /* padding-bottom: 100px; Add some padding to avoid touching footer */
+  } 
+
+.company-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: antiquewhite;
+    padding: 40px;
+    padding-top: 15px;
+    max-width: 1000px;
+    /* border-radius: 20px; */
+    width: 100%;
+    height: 100%;
+}
+/* .company-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: antiquewhite;
+    height: 100vh;
+    max-width: 1000px;
+    border-radius: 20px;
+} */
+
+.company-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    background-color: whitesmoke;
+    max-width: 1000px;
+    width: 100%;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.company-description {
+    background-color: whitesmoke;
+    margin: 10px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.logo img {
+    height: 60px;
+    margin-right: 20px;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.company-name h2 {
+    margin: 0;
+}
+
+.company-name p {
+    margin: 6px 0 0 0;
+}
+
+h1 {
+    border-left: 5px solid #158ab8;
+    padding-left: 10px;
+}
+
+#register {
+    font-size: large;
+    padding: 10px 40px;
+    border-radius: 8px;
+    background-color: #1fc955;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+#register:hover {
+    background-color: #1fc938;
+    text-decoration: none;
+}
+
+.info-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 15px 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .info-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .info-label {
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+  
+  .info-value {
+    color: #555;
+    margin: 5px 0 0 0;
+  }
+  
+  .info-icon img {
+    width: 60px;
+    height: 60px;
+  }
+  
