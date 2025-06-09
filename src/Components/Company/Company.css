@@ -64,7 +64,7 @@
     margin: 6px 0 0 0;
 }
 
-h1 {
+.company-description h1 {
     border-left: 5px solid #158ab8;
     padding-left: 10px;
 }
