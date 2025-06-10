@@ -1,0 +1,50 @@
+.browse {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3% 5%;
+    justify-content: space-between;
+    gap: 50px;
+  }
+  
+  .browse-card {
+    width: 22%;
+    height: auto;
+    padding-top: 20px;
+    font-size: 24px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    background-color: #f5f9ff;
+    transition: transform 0.2s ease;
+  }
+  
+  .browse-card:hover {
+    transform: scale(1.03);
+    background-color: #e6f0ff;
+  }
+  
+  .browse-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  
+  .browse-down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 20% 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #75b8ff;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+  }
+  

@@ -10,13 +10,6 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
-
-.navbar-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .profile-pic {
   width: 32px;
   height: 32px;
@@ -58,4 +51,12 @@
   background-color: #6db2fc;
   transition: left 0.3s ease, width 0.3s ease;
   border-radius: 2px;
+}
+
+.navbar-left {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
 }
