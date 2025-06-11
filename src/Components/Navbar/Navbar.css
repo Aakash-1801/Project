@@ -60,3 +60,19 @@
   cursor: pointer;
   gap: 10px;
 }
+
+/* Fade-slide animation */
+@keyframes dropdownSlideFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sub-menu-wrap {
+  animation: dropdownSlideFade 0.3s ease;
+}

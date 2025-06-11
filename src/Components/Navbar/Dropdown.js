@@ -1,4 +1,5 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
 import './Dropdown.css';
 
 function Dropdown() {
@@ -10,7 +11,7 @@ function Dropdown() {
                   <h2>Slug name</h2>
               </div>
               <hr />
-              <a href='/Browse' className='sub-menu-link'>
+              <a href='/Profile' className='sub-menu-link'>
                   <img src='coll.png' alt='company' />
                   <p>My application</p>
                   <span>&gt;</span>

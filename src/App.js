@@ -13,6 +13,7 @@ import Company from  './Components/Company/Company';
 import Footer from './Components/Footer/Footer';
 import Browse from './Components/Browse/Browse';
 import Dropdown from './Components/Navbar/Dropdown';
+import Profile from './Components/Pages/Profile/Profile';
 
 function App() {
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
@@ -23,7 +24,11 @@ function App() {
 
   return (
     <div className='appp'>
-      <Navbar onProfileClick={toggleDropdown} dropdownOpen={dropdownOpen} />
+      <Navbar
+        onProfileClick={toggleDropdown}
+        dropdownOpen={dropdownOpen}
+        setDropdownOpen={setDropdownOpen}
+      />
       {dropdownOpen && <Dropdown />}
       <Routes>
         <Route path="/" element={
@@ -37,12 +42,13 @@ function App() {
             <Popular />
           </>
         } />
+        <Route path="/Profile" element={<Profile />} />
         <Route path="/About" element={<About />} />
         <Route path="/Browse" element={<Browse />} />
         <Route path="/Support" element={<Support />} />
         <Route path="/Contact" element={<Contact />} />
-        <Route path="/company" element={<Company />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/Company" element={<Company />} />
+        <Route path="/Register" element={<Register />} />
       </Routes>
       <Footer />
     </div>

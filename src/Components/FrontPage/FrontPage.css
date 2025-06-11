@@ -30,6 +30,10 @@
     align-items: center;
     justify-content: center;
   }
+
+  .right-content p {
+    display: none;
+  }
   
   .job-image {
     width: 100%;
@@ -37,3 +41,19 @@
     object-fit: cover;
     border-radius: 8px;
   }
+
+@media screen and (max-width: 768px) {
+    .main-container {
+      flex-wrap: wrap;
+    }
+    .left-content p {
+      display: none;
+    }
+    .right-content {
+      display: flex;
+      flex-direction: column;
+    }
+    .right-content p {
+      display: block;
+    }
+}

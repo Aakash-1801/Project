@@ -1,0 +1,78 @@
+/* Main layout below navbar */
+.main-profile {
+    display: flex;
+    padding: 40px 60px;
+    /* align-items: center; */
+}
+
+.left-profile-image {
+    width: 40%;
+    height: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+}
+
+.right-profile-content {
+    width: 60%;
+    height: 1000px;
+    /* align-items: center; */
+    border: 2px solid black;
+}
+
+.left-image {
+    /* width: 240px;
+    height: 240px; */
+    /* border: 2px solid black; */
+    border-radius: 50%;
+}
+
+.profilepng {
+    width: 240px;
+    height: 240px;
+}
+
+.form-right-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 50px;
+}
+
+  .form-right-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .save-btn {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .save-btn:hover {
+    background-color: #0056b3;
+  }
+  
