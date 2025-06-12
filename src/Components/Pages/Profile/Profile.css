@@ -68,6 +68,10 @@
   font-size: 16px;
 }
 
+#resumeuplode {
+  margin-top: 8px;
+}
+
 .gender-form {
   display: flex;
   gap: 20px; /* Changed from justify-content to gap for better control */

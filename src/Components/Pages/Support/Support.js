@@ -17,7 +17,6 @@ function Support() {
   return (
     <div className="support-container">
       <h1>Support Center</h1>
-
       <input
         className="support-search"
         type="text"

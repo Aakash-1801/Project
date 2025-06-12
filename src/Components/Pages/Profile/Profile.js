@@ -63,6 +63,11 @@ function Profile() {
                             <textarea rows={5} type="address" placeholder="Enter your address" />
                         </div>
 
+                        <div>
+                            <h3 className="resume-up">Upload your resume</h3>
+                            <input type="file" name="upload" id="resumeuplode"/>
+                        </div>
+
                         <button type="submit" className="save-btn">Save Changes</button>
                     </form>
                     </div>
