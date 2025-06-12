@@ -61,7 +61,6 @@
   gap: 10px;
 }
 
-/* Fade-slide animation */
 @keyframes dropdownSlideFade {
   from {
     opacity: 0;

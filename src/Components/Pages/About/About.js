@@ -1,5 +1,6 @@
 import React from 'react';
 import './About.css';
+import { Link } from 'react-router-dom';
 
 function About() {
   return (
@@ -45,7 +46,7 @@ function About() {
       <section className="about-section cta">
         <h2>Your next opportunity starts here.</h2>
         <div className="cta-buttons">
-          <button className="btn-primary">Browse Job Listings</button>
+          <Link to='/Browse' className="btn-primary">Browse Job Listings</Link>
           <button className="btn-secondary">Upload Your Resume</button>
           <button className="btn-primary">Track Applications</button>
         </div>

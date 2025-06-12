@@ -13,7 +13,7 @@ function Browse() {
       {companies.map((company, index) => (
         <div className='browse-card' key={index}>
           <div className='browse-up'>{company.name}</div>
-          <Link to="/company" className='browse-down'>{company.views} views</Link>
+          <Link to="/company" className='browse-down' state={{name:company.name}} >{company.views} views</Link>
         </div>
       ))}
     </div>

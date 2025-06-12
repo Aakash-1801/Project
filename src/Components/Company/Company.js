@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Company.css';
 
 function Company() {
+  const location = useLocation();
+  const { name } = location.state || {};
+
   return (
     <div className="page-container">
       <div className="company-wrapper">
@@ -11,7 +14,7 @@ function Company() {
             <img src="amd.png" alt="AMD Logo" />
           </div>
           <div className="company-name">
-            <h2>Company Name</h2>
+            <h2>{name || "No company selected"}</h2>
             <p>Company Tagline</p>
           </div>
         </div>

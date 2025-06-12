@@ -3,7 +3,7 @@ import "./Profile.css";
 
 function Profile() {
     return (
-        <div>
+        <div className="profile-edit-page">
             <div className="main-profile">
                 <div className="left-profile-image">
                     <div className="left-image">
@@ -17,22 +17,50 @@ function Profile() {
 
                         <div className="form-group">
                             <label>Full Name</label>
-                            <input type="text" placeholder="Enter your full name" />
+                            <input type="text" placeholder="Enter your full name" required/>
+                        </div>
+                            
+                        <div className="form-group">
+                            <label>Gender</label>
+                            <div className="gender-form">
+                                <div>
+                                    <input type="radio" id="Male" name="gender" value="Male" />
+                                    <label htmlFor="Male">Male</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="Female" name="gender" value="Female" />
+                                    <label htmlFor="Female">Female</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="Others" name="gender" value="Others" />
+                                    <label htmlFor="Others">Others</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Course</label>
+                            <input type="text" placeholder="Enter your course name" required/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>college</label>
+                            <input type="text" placeholder="Enter your college name" required/>
                         </div>
 
                         <div className="form-group">
                             <label>Email</label>
-                            <input type="email" placeholder="Enter your email" />
+                            <input type="email" placeholder="Enter your email" required/>
                         </div>
 
                         <div className="form-group">
                             <label>Phone</label>
-                            <input type="tel" placeholder="Enter your phone number" />
+                            <input type="tel" placeholder="Enter your phone number" required/>
                         </div>
 
                         <div className="form-group">
                             <label>Address</label>
-                            <input type="text" placeholder="Enter your address" />
+                            <textarea rows={5} type="address" placeholder="Enter your address" />
                         </div>
 
                         <button type="submit" className="save-btn">Save Changes</button>

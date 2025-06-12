@@ -1,78 +1,101 @@
-/* Main layout below navbar */
+.profile-edit-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: #f9f9f9; /* Added for better contrast */
+}
+
 .main-profile {
-    display: flex;
-    padding: 40px 60px;
-    /* align-items: center; */
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  padding: 40px 60px;
+  background-color: #ffffff; /* Added background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Added card-style shadow */
+  border-radius: 12px; /* Rounded corners */
 }
 
 .left-profile-image {
-    width: 40%;
-    height: 1000px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid black;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Simplified padding */
+  box-sizing: border-box;
 }
 
 .right-profile-content {
-    width: 60%;
-    height: 1000px;
-    /* align-items: center; */
-    border: 2px solid black;
+  width: 60%;
+  padding: 20px 40px;
+  box-sizing: border-box;
 }
 
 .left-image {
-    /* width: 240px;
-    height: 240px; */
-    /* border: 2px solid black; */
-    border-radius: 50%;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .profilepng {
-    width: 240px;
-    height: 240px;
+  width: 240px;
+  height: 240px;
+  object-fit: cover; /* Ensures image stays inside circle */
+  border-radius: 50%;
+  border: 3px solid #007bff;
 }
 
 .form-right-profile {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-  .form-right-profile {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group label {
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  .save-btn {
-    margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  .save-btn:hover {
-    background-color: #0056b3;
-  }
-  
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.gender-form {
+  display: flex;
+  gap: 20px; /* Changed from justify-content to gap for better control */
+}
+
+.gender-form div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gender-form input[type="radio"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.save-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+  background-color: #0056b3;
+}
