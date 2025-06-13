@@ -16,6 +16,7 @@ import Dropdown from './Components/Navbar/Dropdown';
 import Profile from './Components/Pages/Profile/Profile';
 
 function App() {
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
   const toggleDropdown = () => {
@@ -24,7 +25,14 @@ function App() {
 
   return (
     <div className='appp'>
+      {/* <Navbar
+        onProfileClick={toggleDropdown}
+        dropdownOpen={dropdownOpen}
+        setDropdownOpen={setDropdownOpen}
+      /> */}
       <Navbar
+        loggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
         onProfileClick={toggleDropdown}
         dropdownOpen={dropdownOpen}
         setDropdownOpen={setDropdownOpen}

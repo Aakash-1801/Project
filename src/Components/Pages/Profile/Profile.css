@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background-color: #f9f9f9; /* Added for better contrast */
+  background-color: #f9f9f9;
 }
 
 .main-profile {
@@ -11,17 +11,18 @@
   max-width: 1000px;
   width: 100%;
   padding: 40px 60px;
-  background-color: #ffffff; /* Added background */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Added card-style shadow */
-  border-radius: 12px; /* Rounded corners */
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
 }
 
 .left-profile-image {
   width: 40%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px; /* Simplified padding */
+  padding: 20px;
   box-sizing: border-box;
 }
 
@@ -31,17 +32,29 @@
   box-sizing: border-box;
 }
 
-.left-image {
+/* .left-image {
   border-radius: 50%;
   overflow: hidden;
-}
+} */
 
 .profilepng {
   width: 240px;
   height: 240px;
-  object-fit: cover; /* Ensures image stays inside circle */
+  object-fit: cover;
   border-radius: 50%;
-  border: 3px solid #007bff;
+}
+
+.profile-edit {
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  transform: translateX(-180%);
+  /* transform: translateY(-60%); */
+}
+.profile-edit:hover {
+  cursor: pointer;
 }
 
 .form-right-profile {
@@ -67,6 +80,11 @@
   border-radius: 6px;
   font-size: 16px;
 }
+.form-group textarea {
+  padding: 10px;
+  /* border: 1px solid #ccc; */
+  border-radius: 6px;
+}
 
 #resumeuplode {
   margin-top: 8px;
@@ -74,7 +92,7 @@
 
 .gender-form {
   display: flex;
-  gap: 20px; /* Changed from justify-content to gap for better control */
+  gap: 20px;
 }
 
 .gender-form div {

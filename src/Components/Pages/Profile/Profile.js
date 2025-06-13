@@ -8,6 +8,9 @@ function Profile() {
                 <div className="left-profile-image">
                     <div className="left-image">
                         <img src="profile.png" alt="profile" className="profilepng" />
+                    {/* </div>
+                    <div className="left-image"> */}
+                        <img src="magic-tool.png" alt="edit-profile" className="profile-edit" />
                     </div>
                 </div>
                 <div className="right-profile-content">
@@ -65,7 +68,7 @@ function Profile() {
 
                         <div>
                             <h3 className="resume-up">Upload your resume</h3>
-                            <input type="file" name="upload" id="resumeuplode"/>
+                            <input type="file" name="upload" id="resumeuplode" required/>
                         </div>
 
                         <button type="submit" className="save-btn">Save Changes</button>

@@ -2,7 +2,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import './Dropdown.css';
 
-function Dropdown() {
+function Dropdown({setLoggedIn}) {
   return (
       <div className='sub-menu-wrap'>
           <div className='sub-menu'>
@@ -26,9 +26,9 @@ function Dropdown() {
                   <p>Support</p>
                   <span>&gt;</span>
               </a>
-              <a href='/Browse' className='sub-menu-link'>
+              <a href='/' className='sub-menu-link'>
                   <img src='logout.png' alt='company' />
-                  <p>Log Out</p>
+                  <p onClick={() => setLoggedIn(false)}>Log Out</p>
                   <span>&gt;</span>
               </a>
           </div>
