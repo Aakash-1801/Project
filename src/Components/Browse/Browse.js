@@ -1,19 +1,30 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Browse.css';
 
 function Browse() {
-  const companies = Array.from({ length: 25 }, (_, i) => ({
-    name: `Company ${i + 1}`,
-    views: Math.floor(Math.random() * 5000 + 1000),
-  }));
+  const [opportunities, setOpportunities] = useState([]);
+
+  useEffect(() => {
+    const fetchOpportunities = async () => {
+      const res = await fetch('http://localhost:5000/api/getalljobs');
+      const data = await res.json();
+      setOpportunities(data);
+    };
+    fetchOpportunities();
+  }, []);
 
   return (
-    <div className='browse'>
-      {companies.map((company, index) => (
-        <div className='browse-card' key={index}>
-          <div className='browse-up'>{company.name}</div>
-          <Link to="/company" className='browse-down' state={{name:company.name}} >{company.views} views</Link>
+    <div className="browse">
+      {opportunities.map((item, index) => (
+        <div className="browse-card" key={index}>
+          <div className="browse-up">{item.opportunity}</div>
+          <Link
+            to={`/opportunity/${encodeURIComponent(item.opportunity)}`}
+            className="browse-down"
+          >
+            View
+          </Link>
         </div>
       ))}
     </div>

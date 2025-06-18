@@ -10,6 +10,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
 .profile-pic {
   width: 32px;
   height: 32px;
@@ -24,7 +25,7 @@
 .navbar-right {
   display: flex;
   gap: 20px;
-  position: relative; /* needed for sliding underline */
+  position: relative;
 }
 
 .navbar-right a {
@@ -43,7 +44,6 @@
   color: #6db2fc;
 }
 
-/* Sliding underline element */
 .sliding-underline {
   position: absolute;
   bottom: 0;
