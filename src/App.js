@@ -66,10 +66,9 @@ function App() {
                 <FrontPage />
                 <Milestones />
                 <h1 id="cat">Popular categories</h1>
-                <Popular n={8} />
-                {/* <Popular /> */}
+                <Popular a={'jobs'} n={8} />
                 <h1 id="cat">Top Companies</h1>
-                <Popular n={4} />
+                <Popular a={'companies'} n={4} />
               </>
             }
             />

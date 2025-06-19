@@ -1,14 +1,21 @@
 .browse {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 3% 5%;
-    justify-content: space-between;
-    gap: 50px;
+  display: flex;
+  flex-wrap: wrap; /* allow blocks to wrap on small screens */
+  gap: 20px; /* spacing between items */
+  padding: 100px 20px;
+  justify-content: space-evenly; /* center items if they wrap */
+  align-items: flex-start;
   }
   
   .browse-card {
     width: 22%;
+    min-width: 220px; /* prevent too small on wrap */
+    box-sizing: border-box;
     height: auto;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding-top: 20px;
     font-size: 24px;
     border: 2px solid black;
@@ -27,6 +34,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     height: 60px;
     font-weight: 600;
     font-size: 12px;
@@ -36,8 +44,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 20% 20px;
-    padding: 10px 20px;
+    margin: 10px 10% 20px;
+    padding: 10px 50px;
     font-size: 16px;
     font-weight: 600;
     color: white;

@@ -1,11 +1,42 @@
-/* Reset default styles */
+/* Reset and base styles */
 body, html, #root {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
- #cat {
-  padding-left: 20px;
-  font-size: 40px;
- }
+/* .appp {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* padding: 0 20px;
+} */
+
+#cat {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  border-left: 6px solid #3498db;
+  padding: 15px 20px;
+  margin: 30px 0 15px;
+  background: #ecf0f1;
+  border-radius: 6px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  #cat {
+    font-size: 2rem;
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  #cat {
+    font-size: 1.5rem;
+    padding: 10px 14px;
+  }
+}

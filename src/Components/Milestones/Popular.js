@@ -4,30 +4,28 @@ import './Pop.css';
 
 function Popular(props) {
   const [opportunities, setOpportunities] = useState([]);
-  // const [top8, settop8] = useState([]);
 
   useEffect(() => {
     const fetchOpportunities = async () => {
-      const res = await fetch(`http://localhost:5000/api/getalljobs?n=${props.n}`);
+      const res = await fetch(`http://localhost:5000/api/getall${props.a}?n=${props.n}`);
       const data = await res.json();
       setOpportunities(data);
-      // settop8(opportunities.slice(0, 8));
-      // const top8 = data.slize(0, 8);
-      // setOpportunities(top8);
     };
     fetchOpportunities();
-  }, [props.n]);
+  }, [props.n, props.a]);
   return (
     <div className="pop">
       {opportunities.map((item, index) => (
         <div className="pop-card" key={index}>
-          <div className="pop-up">{item.opportunity}</div>
-          <Link
+          {/* <div className="pop-up">{item.opportunity}</div> */}
+          <div className="pop-up">{props.a === 'jobs' ? item.opportunity : item.company}</div>
+          {props.a === 'jobs' && <Link
             to={`/opportunity/${encodeURIComponent(item.opportunity)}`}
             className="pop-down"
           >
             View
-          </Link>
+          </Link>}
+          {/* {props.a == 'companies'} */}
         </div>
       ))}
     </div>
