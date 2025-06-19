@@ -24,8 +24,14 @@ function App() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
-    const isAuth = sessionStorage.getItem('auth');
-    if (isAuth === 'true') setLoggedIn(true);
+    const isAuth = sessionStorage.getItem('auth') === 'true';
+    const token = sessionStorage.getItem('token');
+
+    if (isAuth && token) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
   }, []);
 
   const toggleDropdown = () => {
