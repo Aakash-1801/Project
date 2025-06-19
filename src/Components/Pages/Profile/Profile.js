@@ -5,7 +5,8 @@ function Profile() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
+    console.log('token', token);
     fetch("http://localhost:5000/api/profile", {
       headers: {
         Authorization: `Bearer ${token}`,

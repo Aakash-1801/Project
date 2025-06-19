@@ -29,6 +29,7 @@ function AuthForm({ setLoggedIn }) {
 
       if (res.ok) {
         sessionStorage.setItem('auth', 'true');
+        sessionStorage.setItem('token', data.token);
         setLoggedIn(true);
         alert(`${mode === 'login' ? 'Login' : 'Signup'} successful!`);
         navigate('/');

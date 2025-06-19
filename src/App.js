@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     const isAuth = sessionStorage.getItem('auth') === 'true';
     const token = sessionStorage.getItem('token');
-
+    console.log('token', token);
     if (isAuth && token) {
       setLoggedIn(true);
     } else {
@@ -66,10 +66,10 @@ function App() {
                 <FrontPage />
                 <Milestones />
                 <h1 id="cat">Popular categories</h1>
-                <Popular />
-                <Popular />
+                <Popular n={8} />
+                {/* <Popular /> */}
                 <h1 id="cat">Top Companies</h1>
-                <Popular />
+                <Popular n={4} />
               </>
             }
             />
