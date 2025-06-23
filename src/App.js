@@ -26,7 +26,6 @@ function App() {
   useEffect(() => {
     const isAuth = sessionStorage.getItem('auth') === 'true';
     const token = sessionStorage.getItem('token');
-    console.log('token', token);
     if (isAuth && token) {
       setLoggedIn(true);
     } else {
@@ -55,35 +54,31 @@ function App() {
       />
       {dropdownOpen && <Dropdown setLoggedIn={setLoggedIn} />}
 
-      {!loggedIn ? (
-        <Login setLoggedIn={setLoggedIn} />
-      ) : (
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <FrontPage />
-                <Milestones />
-                <h1 id="cat">Popular categories</h1>
-                <Popular a={'jobs'} n={8} />
-                <h1 id="cat">Top Companies</h1>
-                <Popular a={'companies'} n={4} />
-              </>
-            }
-            />
-          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/Profile" element={<Profile />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/Browse" element={<Browse />} />
-          <Route path="/Support" element={<Support />} />
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/opportunity/:name" element={<Company />} />
-          <Route path="/Postjob" element={<PostJobForm />} />
-          <Route path="/Register" element={<Register />} />
-        </Routes>
-      )}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="container">
+              <FrontPage />
+              <Milestones />
+              <h1 id="cat">Popular categories</h1>
+              <Popular a={'jobs'} n={8} />
+              <h1 id="cat">Top Companies</h1>
+              <Popular a={'companies'} n={4} />
+            </div>
+          }
+        />
+        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/Profile" element={<Profile />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/Browse" element={<Browse />} />
+        <Route path="/Support" element={<Support />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="/opportunity/:name" element={<Company />} />
+        <Route path="/Postjob" element={<PostJobForm />} />
+        <Route path="/Register" element={<Register />} />
+      </Routes>
 
       <Footer />
     </div>

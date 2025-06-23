@@ -71,12 +71,12 @@
   text-align: right;
 }
 
-.forgot-link a {
+.forgot-link Link {
   font-size: 14px;
   color: #007bff;
   text-decoration: none;
 }
 
-.forgot-link a:hover {
+.forgot-link Link:hover {
   text-decoration: underline;
 }

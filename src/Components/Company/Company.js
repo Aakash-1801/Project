@@ -113,7 +113,6 @@ function Company() {
           </div>
         </div>
 
-        {/* <a href="/register" id="register">Apply Here</a> */}
         <Link
           to="/Register"
           id="register"

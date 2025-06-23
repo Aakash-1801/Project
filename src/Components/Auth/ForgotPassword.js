@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleReset = async (e) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ function ForgotPassword() {
       const data = await res.json();
       if (res.ok) {
         alert('Password reset successful! Please log in.');
-        window.location.href = '/';
+        navigate('/login');
       } else {
         alert(data.message || 'Reset failed');
       }

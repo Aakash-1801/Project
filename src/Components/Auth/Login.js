@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function AuthForm({ setLoggedIn }) {
@@ -34,7 +34,7 @@ function AuthForm({ setLoggedIn }) {
         alert(`${mode === 'login' ? 'Login' : 'Signup'} successful!`);
         navigate('/');
       }
-       else {
+      else {
         alert(data.message || `${mode} failed`);
       }
     } catch (err) {
@@ -86,7 +86,7 @@ function AuthForm({ setLoggedIn }) {
         )}
         <button type="submit">{mode === 'login' ? 'Login' : 'Sign Up'}</button>
         <div className="forgot-link">
-          <a href="/forgot-password">Forgot password?</a>
+          <Link to="/forgot-password">Forgot password?</Link>
         </div>
       </form>
     </div>

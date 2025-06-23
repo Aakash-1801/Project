@@ -8,6 +8,7 @@ function Navbar({ loggedIn, setLoggedIn, onProfileClick, dropdownOpen, setDropdo
   const dropdownRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
   const [underlineStyle, setUnderlineStyle] = useState({ left: 0, width: 0 });
 
   useEffect(() => {
@@ -63,20 +64,20 @@ function Navbar({ loggedIn, setLoggedIn, onProfileClick, dropdownOpen, setDropdo
         )}
       </div>
 
-      <div className="navbar-right" ref={navRef}>
-        <NavLink to="/" end className={({ isActive }) => (isActive ? "active-link" : "")}>
+      <div className={`navbar-right ${menuOpen ? 'open' : ''}`} ref={navRef}>
+        <NavLink to="/" end className={({ isActive }) => (isActive ? "active-link" : "")} onClick={() => setMenuOpen(!menuOpen)}>
           Home
         </NavLink>
-        <NavLink to="/Browse" className={({ isActive }) => (isActive ? "active-link" : "")}>
+        <NavLink to="/Browse" className={({ isActive }) => (isActive ? "active-link" : "")} onClick={() => setMenuOpen(!menuOpen)}>
           Browse
         </NavLink>
-        <NavLink to="/About" className={({ isActive }) => (isActive ? "active-link" : "")}>
+        <NavLink to="/About" className={({ isActive }) => (isActive ? "active-link" : "")} onClick={() => setMenuOpen(!menuOpen)}>
           About
         </NavLink>
-        <NavLink to="/Support" className={({ isActive }) => (isActive ? "active-link" : "")}>
+        <NavLink to="/Support" className={({ isActive }) => (isActive ? "active-link" : "")} onClick={() => setMenuOpen(!menuOpen)}>
           Support
         </NavLink>
-        <NavLink to="/Contact" className={({ isActive }) => (isActive ? "active-link" : "")}>
+        <NavLink to="/Contact" className={({ isActive }) => (isActive ? "active-link" : "")} onClick={() => setMenuOpen(!menuOpen)}>
           Contact
         </NavLink>
         <span
@@ -86,6 +87,11 @@ function Navbar({ loggedIn, setLoggedIn, onProfileClick, dropdownOpen, setDropdo
             width: underlineStyle.width,
           }}
         />
+      </div>
+      <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
       </div>
     </nav>
   );
