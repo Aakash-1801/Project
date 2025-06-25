@@ -10,6 +10,7 @@ function Navbar({ loggedIn, setLoggedIn, onProfileClick, dropdownOpen, setDropdo
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [underlineStyle, setUnderlineStyle] = useState({ left: 0, width: 0 });
+  const savedEmail = sessionStorage.getItem('email');
 
   useEffect(() => {
     const activeLink = navRef.current?.querySelector('.active-link');
@@ -54,7 +55,7 @@ function Navbar({ loggedIn, setLoggedIn, onProfileClick, dropdownOpen, setDropdo
             onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onProfileClick()}
           >
             <img src="profile.png" alt="Profile" className="profile-pic" />
-            <span className="profile-name">Slug name</span>
+            <span className="profile-name">{savedEmail}</span>
             {dropdownOpen && <Dropdown setLoggedIn={setLoggedIn} />}
           </div>
         ) : (

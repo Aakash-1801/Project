@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
-function AuthForm({ setLoggedIn }) {
+function AuthForm({ setLoggedIn, email, setEmail }) {
   const navigate = useNavigate();
   const [mode, setMode] = useState('login');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -31,6 +30,8 @@ function AuthForm({ setLoggedIn }) {
         sessionStorage.setItem('auth', 'true');
         sessionStorage.setItem('token', data.token);
         setLoggedIn(true);
+        sessionStorage.setItem('email', email);
+        setEmail(email);
         alert(`${mode === 'login' ? 'Login' : 'Signup'} successful!`);
         navigate('/');
       }

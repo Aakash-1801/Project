@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './BrowseList.css';
 
-function BrowseList({ filters, onSelect }) {
+function BrowseList({ filters,}) {
+  const navigate = useNavigate();
   const [opportunities, setOpportunities] = useState([]);
 
   useEffect(() => {
@@ -11,15 +13,20 @@ function BrowseList({ filters, onSelect }) {
       .catch(err => console.error('Axios fetch error:', err));
   }, [filters]);
 
+  const handleclick = (item) => {
+    navigate('/browse/details', { state: { item } });
+  }
+
   return (
     <div className="browse-list">
       {opportunities.map(item => (
         <div
           key={item._id}
           className="browse-card"
-          onClick={() => onSelect(item)}
+          onClick={() => handleclick(item)}
         >
           <span className={`browse-type ${item.type?.toLowerCase()}`}>{item.type}</span>
+          {/* {item.logo && <img src={item.logo} alt={`${item.company} logo`} />} */}
           <h4>{item.opportunity}</h4>
           <p>{item.company}</p>
           <p>

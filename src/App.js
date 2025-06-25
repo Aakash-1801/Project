@@ -10,7 +10,7 @@ import About from './Components/Pages/About/About';
 import Support from './Components/Pages/Support/Support';
 import Contact from './Components/Pages/Contact/Contact';
 import Register from './Components/Register/Register';
-import Company from './Components/Company/Company';
+// import Company from './Components/Company/Company';
 import Footer from './Components/Footer/Footer';
 import Browse from './Components/Browse/Browse';
 import Dropdown from './Components/Navbar/Dropdown';
@@ -18,9 +18,11 @@ import Profile from './Components/Pages/Profile/Profile';
 import Login from './Components/Auth/Login';
 import ForgotPassword from './Components/Auth/ForgotPassword';
 import PostJobForm from './Components/Postjob/Postjobform';
+import BrowseDetails from './Components/Browse/BrowseDetails';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [email, setEmail] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
@@ -68,16 +70,17 @@ function App() {
             </div>
           }
         />
-        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} email={email} setEmail={setEmail} />} />
+        <Route path="/forgot-password" element={<ForgotPassword email={email} setEmail={setEmail} />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/About" element={<About />} />
         <Route path="/Browse" element={<Browse />} />
+        <Route path="/Browse/details" element={<BrowseDetails loggedIn={loggedIn} />} />
         <Route path="/Support" element={<Support />} />
         <Route path="/Contact" element={<Contact />} />
-        <Route path="/opportunity/:name" element={<Company />} />
+        {/* <Route path="/opportunity/:name" element={<Company />} /> */}
         <Route path="/Postjob" element={<PostJobForm />} />
-        <Route path="/Register" element={<Register />} />
+        <Route path="/Register" element={<Register loggedIn={loggedIn} />} />
       </Routes>
 
       <Footer />

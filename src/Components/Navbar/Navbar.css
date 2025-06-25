@@ -114,7 +114,7 @@
   transform: scale(0.98);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
   .navbar-right {
     position: absolute;
     top: 100%;
