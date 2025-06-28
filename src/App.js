@@ -63,7 +63,7 @@ function App() {
             <div className="container">
               <FrontPage />
               <Milestones />
-              <h1 id="cat">Popular categories</h1>
+              <h1 id="cat">Popular Tags</h1>
               <Popular a={'jobs'} n={8} />
               <h1 id="cat">Top Companies</h1>
               <Popular a={'companies'} n={4} />

@@ -39,8 +39,8 @@ import { useNavigate } from "react-router-dom";
 import "./Pop.css";
 
 const quickFilters = [
-  { label: "Computer", value: "Computer", icon: "💻" },
-  { label: "Data Science", value: "Data Science", icon: "📊" },
+  { label: "Frontend", value: "Frontend", icon: "💻" },
+  { label: "Analytics", value: "Analytics", icon: "📊" },
   { label: "AI", value: "AI", icon: "🧠" },
   { label: "Frontend", value: "Frontend", icon: "🎨" },
 ];

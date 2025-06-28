@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './FilterBar.css';
 
-function FilterBar({ filters, setFilters }) {
+function FilterBar({ filters }) {
+  const navigate = useNavigate();
+
   const [options, setOptions] = useState({
     type: [],
     mode: [],
@@ -18,7 +21,24 @@ function FilterBar({ filters, setFilters }) {
       .catch(err => console.error('Failed to load filter options', err));
   }, []);
 
-  const update = (key, val) => setFilters({ ...filters, [key]: val });
+  const updateURL = (newFilters) => {
+    const searchParams = new URLSearchParams();
+
+    Object.entries(newFilters).forEach(([key, val]) => {
+      if (val) searchParams.set(key, val);
+    });
+
+    navigate({ pathname: '/browse', search: `?${searchParams.toString()}` });
+  };
+
+  const update = (key, val) => {
+    const newFilters = { ...filters, [key]: val };
+    updateURL(newFilters);
+  };
+
+  const clearFilters = () => {
+    navigate('/browse');
+  };
 
   return (
     <div className="filter-bar">
@@ -34,19 +54,7 @@ function FilterBar({ filters, setFilters }) {
           ))}
         </select>
       ))}
-        <button className="clear-btn" onClick={() =>
-            setFilters({
-                type: '',
-                mode: '',
-                category: '',
-                eligibility: '',
-                location: '',
-                tag: ''
-            })
-            }>
-            Clear Filters
-        </button>
-
+      <button className="clear-btn" onClick={clearFilters}>Clear Filters</button>
     </div>
   );
 }

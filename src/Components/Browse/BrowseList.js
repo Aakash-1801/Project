@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './BrowseList.css';
 
-function BrowseList({ filters,}) {
+function BrowseList() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
   const [opportunities, setOpportunities] = useState([]);
+
+  const filters = {
+    type: query.get('type') || '',
+    mode: query.get('mode') || '',
+    category: query.get('category') || '',
+    eligibility: query.get('eligibility') || '',
+    location: query.get('location') || '',
+    tag: query.get('tag') || '',
+  };
 
   useEffect(() => {
     axios.post('http://localhost:5000/api/getalljobs', filters)
       .then(res => setOpportunities(res.data))
       .catch(err => console.error('Axios fetch error:', err));
-  }, [filters]);
+  }, [location.search]);
 
   const handleclick = (item) => {
     navigate('/browse/details', { state: { item } });
-  }
+  };
 
   return (
     <div className="browse-list">
@@ -26,7 +37,6 @@ function BrowseList({ filters,}) {
           onClick={() => handleclick(item)}
         >
           <span className={`browse-type ${item.type?.toLowerCase()}`}>{item.type}</span>
-          {/* {item.logo && <img src={item.logo} alt={`${item.company} logo`} />} */}
           <h4>{item.opportunity}</h4>
           <p>{item.company}</p>
           <p>
