@@ -70,7 +70,7 @@ function App() {
             </div>
           }
         />
-        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} email={email} setEmail={setEmail} />} />
+        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
         <Route path="/forgot-password" element={<ForgotPassword email={email} setEmail={setEmail} />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/About" element={<About />} />
