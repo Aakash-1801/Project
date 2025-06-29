@@ -5,19 +5,19 @@ function Milestones() {
   	return (
     	<div className='milestone'>
 			<div className='mlstn'>
-			<div id='up'>Welcome</div>
+			<div id='up'>Users</div>
 			<div id='down'>1000</div>
 			</div>
 			<div className='mlstn'>
-			<div id='up'>To</div>
+			<div id='up'>Companies</div>
 			<div id='down'>1000</div>
 			</div>
 			<div className='mlstn'>
-			<div id='up'>My</div>
+			<div id='up'>Jobs</div>
 			<div id='down'>1000</div>
 			</div>
 			<div className='mlstn'>
-			<div id='up'>Private</div>
+			<div id='up'>opportunities</div>
 			<div id='down'>1000</div>
 			</div>
 		</div>

@@ -10,7 +10,7 @@ import About from './Components/Pages/About/About';
 import Support from './Components/Pages/Support/Support';
 import Contact from './Components/Pages/Contact/Contact';
 import Register from './Components/Register/Register';
-// import Company from './Components/Company/Company';
+import HowItWorks from './Components/FrontPage/howitworks';
 import Footer from './Components/Footer/Footer';
 import Browse from './Components/Browse/Browse';
 import Dropdown from './Components/Navbar/Dropdown';
@@ -63,10 +63,20 @@ function App() {
             <div className="container">
               <FrontPage />
               <Milestones />
-              <h1 id="cat">Popular Tags</h1>
-              <Popular a={'jobs'} n={8} />
-              <h1 id="cat">Top Companies</h1>
-              <Popular a={'companies'} n={4} />
+              <HowItWorks />
+              <h1 id="cat">Popular Categories</h1>
+              <Popular quickFilters={[
+                { label: "Web", value: "Web", icon: "💻" },
+                { label: "Analytics", value: "Analytics", icon: "📊" },
+                { label: "AI", value: "AI", icon: "🧠" },
+                { label: "Frontend", value: "Frontend", icon: "🎨" },
+              ]} filtertype='tag' />
+              <h1 id="cat">Locations Near You</h1>
+              <Popular quickFilters={[
+                { label: "Remote", value: "Remote", icon: "🌐" },
+                { label: "Mumbai", value: "Mumbai", icon: "🌆" },
+                { label: "Chennai", value: "Chennai", icon: "🏖️" },
+              ]} filtertype='location' />
             </div>
           }
         />

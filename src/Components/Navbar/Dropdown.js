@@ -2,11 +2,6 @@ import React from 'react';
 import './Dropdown.css';
 
 function Dropdown({ setLoggedIn }) {
-  // const handleLogout = (e) => {
-  //   e.preventDefault();
-  //   setLoggedIn(false);
-  // };
-
   const handleLogout = (e) => {
     e.preventDefault();
     sessionStorage.removeItem('auth');

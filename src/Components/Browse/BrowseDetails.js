@@ -136,8 +136,10 @@ function BrowseDetails({loggedIn}) {
             Apply Now
           </Link>
             ) : (
-            <div className="apply-btn">
-              Login to apply
+            <div>
+                <Link to='/login' className="apply-btn">
+                  Login to apply
+                </Link>  
             </div>
           )}
         </div>

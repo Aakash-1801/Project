@@ -5,7 +5,7 @@
     width: 350px;
     padding: 10px;
     z-index: 999;
-  }
+}
 
 .sub-menu {
     background-color: #f1f1f1;
@@ -14,8 +14,7 @@
     border: 2px solid #ddd;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
+}
 
 .user-info {
     display: flex;
