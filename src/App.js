@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import { UserProvider } from "./context/UserContext";
 
 import Navbar from './Components/Navbar/Navbar';
 import FrontPage from './Components/FrontPage/FrontPage';
@@ -19,6 +20,8 @@ import Login from './Components/Auth/Login';
 import ForgotPassword from './Components/Auth/ForgotPassword';
 import PostJobForm from './Components/Postjob/Postjobform';
 import BrowseDetails from './Components/Browse/BrowseDetails';
+import MyRegistrations from './Components/Register/MyRegistrations';
+import CompanyRegistrations from './Components/Register/CompanyRegistration';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -46,54 +49,58 @@ function App() {
 
   return (
     <div className="appp">
-      <Navbar
-        loggedIn={loggedIn}
-        setLoggedIn={setLoggedIn}
-        onProfileClick={toggleDropdown}
-        dropdownOpen={dropdownOpen}
-        setDropdownOpen={setDropdownOpen}
-        onLogout={handleLogout}
-      />
-      {dropdownOpen && <Dropdown setLoggedIn={setLoggedIn} />}
-
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="container">
-              <FrontPage />
-              <Milestones />
-              <HowItWorks />
-              <h1 id="cat">Popular Categories</h1>
-              <Popular quickFilters={[
-                { label: "Web", value: "Web", icon: "💻" },
-                { label: "Analytics", value: "Analytics", icon: "📊" },
-                { label: "AI", value: "AI", icon: "🧠" },
-                { label: "Frontend", value: "Frontend", icon: "🎨" },
-              ]} filtertype='tag' />
-              <h1 id="cat">Locations Near You</h1>
-              <Popular quickFilters={[
-                { label: "Remote", value: "Remote", icon: "🌐" },
-                { label: "Mumbai", value: "Mumbai", icon: "🌆" },
-                { label: "Chennai", value: "Chennai", icon: "🏖️" },
-              ]} filtertype='location' />
-            </div>
-          }
+      <UserProvider>
+        <Navbar
+          loggedIn={loggedIn}
+          setLoggedIn={setLoggedIn}
+          onProfileClick={toggleDropdown}
+          dropdownOpen={dropdownOpen}
+          setDropdownOpen={setDropdownOpen}
+          onLogout={handleLogout}
         />
-        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
-        <Route path="/forgot-password" element={<ForgotPassword email={email} setEmail={setEmail} />} />
-        <Route path="/Profile" element={<Profile />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Browse" element={<Browse />} />
-        <Route path="/Browse/details" element={<BrowseDetails loggedIn={loggedIn} />} />
-        <Route path="/Support" element={<Support />} />
-        <Route path="/Contact" element={<Contact />} />
-        {/* <Route path="/opportunity/:name" element={<Company />} /> */}
-        <Route path="/Postjob" element={<PostJobForm />} />
-        <Route path="/Register" element={<Register loggedIn={loggedIn} />} />
-      </Routes>
+        {dropdownOpen && <Dropdown setLoggedIn={setLoggedIn} />}
 
-      <Footer />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="container">
+                <FrontPage />
+                <Milestones />
+                <HowItWorks />
+                <h1 id="cat">Popular Categories</h1>
+                <Popular quickFilters={[
+                  { label: "Web", value: "Web", icon: "💻" },
+                  { label: "Analytics", value: "Analytics", icon: "📊" },
+                  { label: "AI", value: "AI", icon: "🧠" },
+                  { label: "Frontend", value: "Frontend", icon: "🎨" },
+                ]} filtertype='tag' />
+                <h1 id="cat">Locations Near You</h1>
+                <Popular quickFilters={[
+                  { label: "Remote", value: "Remote", icon: "🌐" },
+                  { label: "Mumbai", value: "Mumbai", icon: "🌆" },
+                  { label: "Chennai", value: "Chennai", icon: "🏖️" },
+                ]} filtertype='location' />
+              </div>
+            }
+          />
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
+          <Route path="/forgot-password" element={<ForgotPassword email={email} setEmail={setEmail} />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Browse" element={<Browse />} />
+          <Route path="/Browse/details" element={<BrowseDetails loggedIn={loggedIn} />} />
+          <Route path="/Support" element={<Support />} />
+          <Route path="/my-registrations" element={<MyRegistrations />} />
+          <Route path="/company-registrations" element={<CompanyRegistrations />} />
+          <Route path="/Contact" element={<Contact />} />
+          {/* <Route path="/opportunity/:name" element={<Company />} /> */}
+          <Route path="/Postjob" element={<PostJobForm />} />
+          <Route path="/Register" element={<Register loggedIn={loggedIn} />} />
+        </Routes>
+
+        <Footer />
+      </UserProvider>
     </div>
   );
 }

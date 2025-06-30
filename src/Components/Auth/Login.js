@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
 import './Login.css';
 
 function AuthForm({ setLoggedIn, setEmail }) {
+  const {dispatch} = useUser();
   const navigate = useNavigate();
   const [mode, setMode] = useState('login');
   const [password, setPassword] = useState('');
@@ -69,6 +71,27 @@ function AuthForm({ setLoggedIn, setEmail }) {
         sessionStorage.setItem('email', userdata.email);
         sessionStorage.setItem('role', userdata.role);
         setLoggedIn(true);
+
+        const profileRes = await fetch('http://localhost:5000/api/profile', {
+          headers: {
+            Authorization: `Bearer ${data.token}`,
+          },
+        });
+      
+        if (profileRes.ok) {
+          const profile = await profileRes.json();
+          const profilePic = profile.profilePic || profile.companyLogo || '';
+          dispatch({
+            type: 'LOGIN',
+            payload: {
+              email: profile.email,
+              role: profile.role,
+              token: data.token,
+              profilePic,
+            },
+          });
+        }
+
         alert(`${mode === 'login' ? 'Login' : 'Signup'} successful!`);
         navigate('/');
       } else {

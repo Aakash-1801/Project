@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
 
@@ -11,6 +12,7 @@ function Navbar({ loggedIn, setLoggedIn, onProfileClick, dropdownOpen, setDropdo
   const [menuOpen, setMenuOpen] = useState(false);
   const [underlineStyle, setUnderlineStyle] = useState({ left: 0, width: 0 });
   const savedEmail = sessionStorage.getItem('email');
+  const { state } = useUser();
 
   useEffect(() => {
     const activeLink = navRef.current?.querySelector('.active-link');
@@ -40,7 +42,7 @@ function Navbar({ loggedIn, setLoggedIn, onProfileClick, dropdownOpen, setDropdo
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdownOpen, setDropdownOpen]);
-
+  console.log(state.profilePic);
   return (
     <nav className="navbar">
       <div className="navbar-left" ref={dropdownRef}>
@@ -54,7 +56,7 @@ function Navbar({ loggedIn, setLoggedIn, onProfileClick, dropdownOpen, setDropdo
             tabIndex={0}
             onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onProfileClick()}
           >
-            <img src="profile.png" alt="Profile" className="profile-pic" />
+            <img src={`http://localhost:5000${state.profilePic}`|| 'profile.png'} alt="Profile" className="profile-pic" />
             <span className="profile-name">{savedEmail}</span>
             {dropdownOpen && <Dropdown setLoggedIn={setLoggedIn} />}
           </div>

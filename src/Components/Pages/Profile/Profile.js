@@ -104,7 +104,7 @@ function Profile() {
   ? `http://localhost:5000${imagePath}`
   : '/profile.png';
 
-  console.log(imagePath);
+  // console.log(imagePath);
 
   return (
     <div className="profile-edit-page">
