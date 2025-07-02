@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
+import { useUser } from "../../../context/UserContext";
 
 function Profile() {
+  const { state, dispatch } = useUser();
   const [user, setUser] = useState({});
   const [_roll, set_roll] = useState('');
   const [_nam, set_nam] = useState('');
@@ -13,15 +15,18 @@ function Profile() {
   const [_companyLogo, set_companyLogo] = useState('');
   const [_profilePic, set_profilePic] = useState('');
   const [selectedImageFile, setSelectedImageFile] = useState(null);
+  const [showImageModal, setShowImageModal] = useState(false);
 
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
+    const token = sessionStorage.getItem('token');
+    if (!token) return;
+
     fetch("http://localhost:5000/api/profile", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.ok ? res.json() : Promise.reject("Unauthorized"))
       .then((data) => {
-        set_roll(data.role)
+        set_roll(data.role);
         const profile = data.profile;
         setUser(profile);
         set_companyLogo(profile.companyLogo || '');
@@ -37,8 +42,9 @@ function Profile() {
         console.error("Token invalid or expired:", err);
         setUser({ error: "Unauthorized" });
       });
-  }, []);
-  if(!_roll) return <p>error fetching or session expired</p>
+  }, [state.token]);
+
+  if (!_roll) return <p>Error fetching or session expired</p>;
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -77,17 +83,28 @@ function Profile() {
     }
 
     try {
-      const token = sessionStorage.getItem("token");
       const res = await fetch("http://localhost:5000/api/editprofile", {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${state.token}` },
         body: formData,
       });
 
       const data = await res.json();
       if (res.ok) {
+        const updatedPic = data.user?.profilePic || data.company?.companyLogo || '';
+        // const updatedname = data.user?.fullName || data.company?.
+        dispatch({ type: "UPDATE_PROFILE_PIC", payload: updatedPic });
+        // dispatch({
+        //   type: "UPDATE",
+        //   payload: {
+        //     email: data.user?.email,
+        //     role: data.user?.role,
+        //     token: token,
+        //     profilePic: updatedPic,
+        //     displayname: displayname
+        //   }
+        // });
         alert("Profile updated successfully!");
-        window.location.reload();
       } else {
         alert(data.message || "Update failed");
       }
@@ -99,12 +116,10 @@ function Profile() {
 
   const imagePath = _roll === 'Company' ? _companyLogo : _profilePic;
   const displayImage = imagePath?.startsWith("data:")
-  ? imagePath
-  : imagePath
-  ? `http://localhost:5000${imagePath}`
-  : '/profile.png';
-
-  // console.log(imagePath);
+    ? imagePath
+    : imagePath
+    ? `http://localhost:5000${imagePath}`
+    : '/profile.png';
 
   return (
     <div className="profile-edit-page">
@@ -115,12 +130,21 @@ function Profile() {
               src={displayImage}
               alt="profile"
               className="profilepng"
+              onClick={() => setShowImageModal(true)}
               onError={(e) => {
-                e.target.onerror = null; // prevent infinite loop
-                e.target.src = '/profile.png'; // fallback to default
+                e.target.onerror = null;
+                e.target.src = '/profile.png';
               }}
+              style={{ cursor: "pointer" }}
             />
-
+            {showImageModal && (
+              <div className="image-modal-overlay" onClick={() => setShowImageModal(false)}>
+                <div className="image-modal" onClick={(e) => e.stopPropagation()}>
+                  <button className="close-btn" onClick={() => setShowImageModal(false)}>×</button>
+                  <img src={displayImage} alt="Large profile" />
+                </div>
+              </div>
+            )}
             <label htmlFor="profile-upload">
               <img src="/magic-tool.png" alt="edit" className="profile-edit" />
             </label>
@@ -139,17 +163,15 @@ function Profile() {
             <h2>Your Profile</h2>
 
             {_roll === "Company" ? (
-              <>
-                <div className="form-group">
-                  <label>Company Name <span style={{ color: "red" }}>*</span></label>
-                  <input
-                    type="text"
-                    value={_companyName}
-                    onChange={(e) => set_companyName(e.target.value)}
-                    required
-                  />
-                </div>
-              </>
+              <div className="form-group">
+                <label>Company Name <span style={{ color: "red" }}>*</span></label>
+                <input
+                  type="text"
+                  value={_companyName}
+                  onChange={(e) => set_companyName(e.target.value)}
+                  required
+                />
+              </div>
             ) : (
               <>
                 <div className="form-group">

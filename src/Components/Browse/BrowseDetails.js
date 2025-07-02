@@ -1,33 +1,39 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
 import './BrowseDetails.css';
 
-function BrowseDetails({loggedIn}) {
+function BrowseDetails() {
   const location = useLocation();
   const job = location.state?.item || null;
+  const { state } = useUser(); // Access context
+  const loggedIn = state.loggedIn;
+
   if (!job) {
     return <div className="browse-details">Select an opportunity to view details.</div>;
   }
 
   const renderSalary = () => {
-    if (job.annual_salary_min == null && job.annual_salary_max == null) {
-      return 'Not Disclosed';
-    } else if (job.annual_salary_min && job.annual_salary_max) {
-      if (job.annual_salary_min === 0 && job.annual_salary_max === 0) {
-        return 'Unpaid';
-      } else {
-        return `₹${job.annual_salary_min} – ₹${job.annual_salary_max}`;
-      }
-    } else if (job.annual_salary_min) {
-      return job.annual_salary_min === 0 ? 'Unpaid' : `₹${job.annual_salary_min}`;
-    } else {
-      return job.annual_salary_max === 0 ? 'Unpaid' : `₹${job.annual_salary_max}`;
-    }
+    const min = job.annual_salary_min;
+    const max = job.annual_salary_max;
+    if (min == null && max == null) return 'Not Disclosed';
+    if (min === 0 && max === 0) return 'Unpaid';
+    if (min && max) return `₹${min} – ₹${max}`;
+    if (min) return min === 0 ? 'Unpaid' : `₹${min}`;
+    return max === 0 ? 'Unpaid' : `₹${max}`;
   };
 
+  const formatDate = (date) =>
+    new Date(date).toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+
   return (
-    <div className='rappr'>
+    <div className="rappr">
       <div className="browse-details">
+        {/* Header */}
         <div className="company-header">
           <div className="logo">
             <img src={job.logo_url || '/amd.png'} alt="Company Logo" />
@@ -38,17 +44,20 @@ function BrowseDetails({loggedIn}) {
           </div>
         </div>
 
+        {/* Description */}
         <div className="company-description">
           <h3>Description</h3>
           <p>{job.description || 'No description provided.'}</p>
         </div>
 
+        {/* Eligibility */}
         <div className="company-description">
           <h3>Eligibility</h3>
           <p>{job.eligibility || 'Not specified.'}</p>
         </div>
 
-        {job.technologies?.length > 0 && (
+        {/* Technologies */}
+        {Array.isArray(job.technologies) && job.technologies.length > 0 && (
           <div className="company-description">
             <h3>Technologies Required</h3>
             <div className="tech-tags">
@@ -59,13 +68,13 @@ function BrowseDetails({loggedIn}) {
           </div>
         )}
 
+        {/* Info Cards */}
         <div className="info-card">
           <div className="info-text">
             <p className="info-label">Location</p>
             <p className="info-value">
               {job.location || 'N/A'}
-              {/* {job.mode ? ` (${job.mode})` : ''} */}
-              {job.mode ? (job.location&&job.location!=='Remote' ? ` (${job.mode})` : '') : ''}
+              {job.mode && job.location && job.location !== 'Remote' ? ` (${job.mode})` : ''}
             </p>
           </div>
           <div className="info-icon">
@@ -100,13 +109,7 @@ function BrowseDetails({loggedIn}) {
           <div className="info-card">
             <div className="info-text">
               <p className="info-label">Last Date to Apply</p>
-              <p className="info-value">
-                {new Date(job.last_date).toLocaleDateString('en-IN', {
-                  day: 'numeric',
-                  month: 'short',
-                  year: 'numeric'
-                })}
-              </p>
+              <p className="info-value">{formatDate(job.last_date)}</p>
             </div>
             <div className="info-icon">
               <img src="/Clndr.png" alt="Deadline" />
@@ -129,18 +132,16 @@ function BrowseDetails({loggedIn}) {
         <div style={{ marginTop: '20px' }}>
           {loggedIn ? (
             <Link
-            to='/Register'
-            state={{opportunity: job.opportunity}}
-            className="apply-btn"
-          >
-            Apply Now
-          </Link>
-            ) : (
-            <div>
-                <Link to='/login' className="apply-btn">
-                  Login to apply
-                </Link>  
-            </div>
+              to="/Register"
+              state={{ opportunity: job.opportunity }}
+              className="apply-btn"
+            >
+              Apply Now
+            </Link>
+          ) : (
+            <Link to="/login" className="apply-btn">
+              Login to apply
+            </Link>
           )}
         </div>
       </div>

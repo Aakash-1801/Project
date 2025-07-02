@@ -9,7 +9,7 @@ const HowItWorks = () => {
     <>
       <div className="howitworks">
         <div className="container">
-          <h3>How Career Connect Works !</h3>
+          <h3>How JobSearch Works !</h3>
           <div className="banner">
             <div className="card">
               <FaUserPlus />

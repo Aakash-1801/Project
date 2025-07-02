@@ -5,7 +5,8 @@ const initialState = {
   email: "",
   role: "",
   profilePic: "",
-  token: ""
+  token: "",
+  displayname: ""
 };
 
 const UserContext = createContext();
@@ -16,9 +17,10 @@ function userReducer(state, action) {
       return {
         loggedIn: true,
         email: action.payload.email,
+        displayname: action.payload.displayname,
         role: action.payload.role,
         profilePic: action.payload.profilePic || '',
-        token: action.payload.token
+        token: action.payload.token,
       };
     case "LOGOUT":
       return initialState;

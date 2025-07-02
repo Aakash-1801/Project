@@ -37,33 +37,37 @@
 
 .sub-menu-link {
     display: flex;
-    color: black;
     align-items: center;
-    margin: 10px 0;
-    text-decoration: none;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    padding: 10px 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    /* color: inherit; */
 }
+.sub-menu-link:hover {
+    font-weight: 700;
+}
+.sub-menu-link img {
+    margin-right: 10px;
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    border-radius: 50%;
+    background: #e5e5e5;
+}  
 
 .sub-menu-link p {
     font-weight: 500;
     width: 100%;
 }
 
-.sub-menu-link img {
-    width: 32px;
-    height: 32px;
-    padding: 6px;
-    margin-right: 10px;
-    border-radius: 50%;
-    background: #e5e5e5;
-}
-
 .sub-menu-link span {
     font-size: 17px;
     transition: transform 0.3s ease;
-}
-
-.sub-menu-link:hover p {
-    font-weight: 700;
 }
 
 .sub-menu-link:hover span {

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useUser } from '../../context/UserContext';
-import './Login.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
+import "./Login.css";
 
-function AuthForm({ setLoggedIn, setEmail }) {
-  const {dispatch} = useUser();
+function AuthForm() {
+  const { dispatch } = useUser();
   const navigate = useNavigate();
-  const [mode, setMode] = useState('login');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [mode, setMode] = useState("login");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [userdata, setUserdata] = useState({
     fullName: '',
@@ -19,88 +19,72 @@ function AuthForm({ setLoggedIn, setEmail }) {
     address: '',
     role: 'User',
     companyName: '',
-    companyLogo: null,
+    companyLogo: null
   });
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === 'companyLogo') {
+    if (name === "companyLogo") {
       setUserdata((prev) => ({ ...prev, companyLogo: files[0] }));
     } else {
       setUserdata((prev) => ({ ...prev, [name]: value }));
-      if (name === 'email') setEmail(value);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (mode === 'signup' && password !== confirmPassword) {
-      return alert('Passwords do not match');
+    if (mode === "signup" && password !== confirmPassword) {
+      return alert("Passwords do not match");
     }
 
-    const endpoint = mode === 'login' ? 'login' : 'register';
+    const endpoint = mode === "login" ? "login" : "register";
+    const formData = new FormData();
 
-    let formData;
-    if (mode === 'signup') {
-      formData = new FormData();
-      for (const key in userdata) {
-        if (userdata[key]) formData.append(key, userdata[key]);
+    if (mode === "signup") {
+      Object.entries(userdata).forEach(([key, value]) => {
+        if (value) formData.append(key, value);
+      });
+      formData.append("password", password);
+    }
+
+    const res = await fetch(`http://localhost:5000/api/${endpoint}`, {
+      method: "POST",
+      body:
+        mode === "signup"
+          ? formData
+          : JSON.stringify({
+              email: userdata.email,
+              password,
+              role: userdata.role
+            }),
+      headers:
+        mode === "login" ? { "Content-Type": "application/json" } : undefined
+    });
+
+    const data = await res.json();
+    if (!res.ok) return alert(data.message || "Failed");
+
+    const token = data.token;
+    const profileRes = await fetch("http://localhost:5000/api/profile", {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const profile = await profileRes.json();
+    const profilePic = profile.profile?.profilePic || profile.profile?.companyLogo || "";
+    const displayname = profile.role === 'User' ? profile.profile.fullName : profile.profile.companyName;
+    dispatch({
+      type: "LOGIN",
+      payload: {
+        email: profile.profile.email,
+        role: profile.role,
+        token: token,
+        profilePic: profilePic,
+        displayname: displayname
       }
-      formData.append('password', password);
-    }
-
-    const options = {
-      method: 'POST',
-      body: mode === 'signup' ? formData : JSON.stringify({
-        email: userdata.email,
-        password,
-        role: userdata.role
-      }),
-      headers: mode === 'login' ? { 'Content-Type': 'application/json' } : undefined
-    };
-
-    try {
-      const res = await fetch(`http://localhost:5000/api/${endpoint}`, options);
-      const data = await res.json();
-
-      if (res.ok) {
-        console.log('token while login', data.token);
-        sessionStorage.setItem('token', data.token);
-        sessionStorage.setItem('auth', 'true');
-        sessionStorage.setItem('email', userdata.email);
-        sessionStorage.setItem('role', userdata.role);
-        setLoggedIn(true);
-
-        const profileRes = await fetch('http://localhost:5000/api/profile', {
-          headers: {
-            Authorization: `Bearer ${data.token}`,
-          },
-        });
-      
-        if (profileRes.ok) {
-          const profile = await profileRes.json();
-          const profilePic = profile.profilePic || profile.companyLogo || '';
-          dispatch({
-            type: 'LOGIN',
-            payload: {
-              email: profile.email,
-              role: profile.role,
-              token: data.token,
-              profilePic,
-            },
-          });
-        }
-
-        alert(`${mode === 'login' ? 'Login' : 'Signup'} successful!`);
-        navigate('/');
-      } else {
-        alert(data.message || 'Failed');
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Error submitting form');
-    }
+    });
+    sessionStorage.setItem('token', token);
+    alert(`${mode === "login" ? "Login" : "Signup"} successful!`);
+    navigate("/");
   };
 
   return (
@@ -139,7 +123,7 @@ function AuthForm({ setLoggedIn, setEmail }) {
             {userdata.role === 'User' ? (
               <>
                 <label>
-                  Full Name <span style={{ color: 'red' }}>*</span>
+                  User Name <span style={{ color: 'red' }}>*</span>
                 </label>
                 <input type="text" name="fullName" value={userdata.fullName} onChange={handleChange} required />
 
@@ -185,6 +169,17 @@ function AuthForm({ setLoggedIn, setEmail }) {
         )}
 
         <button type="submit">{mode === 'login' ? 'Login' : 'Sign Up'}</button>
+
+        {mode === 'login' && (
+          <div style={{ textAlign: 'right', width: '100%', marginTop: '5px' }}>
+            <span
+              onClick={() => navigate('/forgot-password')}
+              style={{ cursor: 'pointer', color: '#007bff', fontSize: '0.9rem' }}
+            >
+              Forgot Password?
+            </span>
+          </div>
+        )}
       </form>
     </div>
   );

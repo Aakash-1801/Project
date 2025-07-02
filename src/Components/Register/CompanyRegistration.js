@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useUser } from '../../context/UserContext';
 import './CompanyRegistrations.css';
 
 function CompanyRegistrations() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const token = sessionStorage.getItem('token');
+  const { state } = useUser();
+  const token = state.token;
 
   useEffect(() => {
     const fetchRegistrations = async () => {

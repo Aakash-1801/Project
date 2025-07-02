@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useUser } from "../../context/UserContext";
 import "./Myreg.css";
 
 function MyRegistrations() {
   const [registrations, setRegistrations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { state } = useUser();
+  const token = state.token;
 
   useEffect(() => {
     const fetchRegistrations = async () => {
-      const token = sessionStorage.getItem("token");
       try {
         const res = await fetch("http://localhost:5000/api/my-registrations", {
           headers: { Authorization: `Bearer ${token}` },
@@ -26,7 +28,7 @@ function MyRegistrations() {
     };
 
     fetchRegistrations();
-  }, []);
+  }, [token]);
 
   if (loading) return <p className="my-registrations">Loading your registrations...</p>;
 

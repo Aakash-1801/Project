@@ -1,31 +1,23 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
-function ForgotPassword(email, setEmail) {
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const navigate = useNavigate();
+function ForgotPassword() {
+  const [email, setEmail] = useState('');
+  const [role, setRole] = useState('User');
 
   const handleReset = async (e) => {
     e.preventDefault();
 
-    if (newPassword !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-
     try {
-      const res = await fetch('http://localhost:5000/api/reset-password', {
+      const res = await fetch('http://localhost:5000/api/request-reset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, newPassword }),
+        body: JSON.stringify({ email, role }),
       });
 
       const data = await res.json();
       if (res.ok) {
-        alert('Password reset successful! Please log in.');
-        navigate('/login');
+        alert('Reset link sent to your email!');
       } else {
         alert(data.message || 'Reset failed');
       }
@@ -46,21 +38,11 @@ function ForgotPassword(email, setEmail) {
           onChange={e => setEmail(e.target.value)}
           required
         />
-        <input
-          type="password"
-          placeholder="New Password"
-          value={newPassword}
-          onChange={e => setNewPassword(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Confirm New Password"
-          value={confirmPassword}
-          onChange={e => setConfirmPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Reset Password</button>
+        <select value={role} onChange={e => setRole(e.target.value)}>
+          <option value="User">User</option>
+          <option value="Company">Company</option>
+        </select>
+        <button type="submit">Send Reset Link</button>
       </form>
     </div>
   );

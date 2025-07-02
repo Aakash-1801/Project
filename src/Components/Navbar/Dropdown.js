@@ -1,62 +1,69 @@
 import React from 'react';
+import { useUser } from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 import './Dropdown.css';
 
-function Dropdown({ setLoggedIn }) {
-  const role = sessionStorage.getItem('role');
-  const handleLogout = (e) => {
-    e.preventDefault();
-    sessionStorage.removeItem('auth');
-    setLoggedIn(false);
-    window.location.href = '/Login';
-  };
-  
+function Dropdown() {
+  const { state, dispatch } = useUser();
+  const navigate = useNavigate();
 
+  const goTo = (path) => () => {
+    navigate(path);
+  };
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    sessionStorage.removeItem('token');
+    navigate('/login');
+  };
   return (
-    <div className='sub-menu-wrap' role="menu">
+    <div className='sub-menu-wrap'>
       <div className='sub-menu'>
         <div className='user-info'>
-          <img src='profile.png' alt='User' />
-          <h2>Slug name</h2>
+          <img src={state.profilePic ? `http://localhost:5000${state.profilePic}` : 'profile.png'} alt='User' />
+          <h2>{state.displayname || 'User'}</h2>
         </div>
         <hr />
-        <a href='/Profile' className='sub-menu-link'>
-          <img src='coll.png' alt='My application' />
-          <p>My profile</p>
+
+        <button type="button" className="sub-menu-link" onClick={goTo('/Profile')}>
+          <img src="/coll.png" alt="Profile" />
+          <p>My Profile</p>
           <span>&gt;</span>
-        </a>
-        {role === 'User' ?
+        </button>
+
+        {state.role === 'User' ? (
           <>
-            <a href='/Browse' className='sub-menu-link'>
-              <img src='info.png' alt='About' />
+            <button type="button" className="sub-menu-link" onClick={goTo('/Browse')}>
+              <img src="/info.png" alt="Browse" />
               <p>Browse</p>
               <span>&gt;</span>
-            </a>
-            <a href='/my-registrations' className='sub-menu-link'>
-              <img src='info.png' alt='About' />
+            </button>
+            <button type="button" className="sub-menu-link" onClick={goTo('/my-registrations')}>
+              <img src="/info.png" alt="My Registrations" />
               <p>My Registrations</p>
               <span>&gt;</span>
-            </a>
+            </button>
           </>
-          :
+        ) : (
           <>
-            <a href='/Postjob' className='sub-menu-link'>
-              <img src='Adidas-Logo-1949.jpg' alt='Support' />
+            <button type="button" className="sub-menu-link" onClick={goTo('/Postjob')}>
+              <img src="/Adidas-Logo-1949.jpg" alt="Post Job" />
               <p>Post a Job</p>
               <span>&gt;</span>
-            </a>
-            <a href='/company-registrations' className='sub-menu-link'>
-              <img src='info.png' alt='About' />
+            </button>
+            <button type="button" className="sub-menu-link" onClick={goTo('/company-registrations')}>
+              <img src="/info.png" alt="Company Registrations" />
               <p>Company Registrations</p>
               <span>&gt;</span>
-            </a>
+            </button>
           </>
-        }
-        <a href="/" className='sub-menu-link' onClick={handleLogout}>
-          <img src='logout.png' alt='Logout' />
+        )}
+
+        <button type="button" className="sub-menu-link logout-btn" onClick={handleLogout}>
+          <img src="/logout.png" alt="Logout" />
           <p>Log Out</p>
           <span>&gt;</span>
-        </a>
-
+        </button>
       </div>
     </div>
   );
